@@ -1,0 +1,56 @@
+version: "3.7"
+
+services:
+  carrefour_catalogo_mongodb:
+    container_name: carrefour_catalogo_mongodb
+    image: mongo:4.4.13
+    ports:
+      - "27017:27017"
+    volumes:
+      - /home/wagner/work/Carrefour/vtex/mongodb/data:/data/db:rw
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: carrefour
+      MONGO_INITDB_ROOT_PASSWORD: carrefour
+      MONGO_INITDB_DATABASE: carrefour
+
+  carrefour_catalogo_activemq:
+    container_name: carrefour_catalogo_activemq
+    image: rmohr/activemq:5.14.3
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+
+
+
+#  oracle-db:
+#    image: oracleinanutshell/oracle-xe-11g:latest
+#    ports:
+#      - 1521:1521
+#      - 5500:5500
+#
+#  oracle:
+#
+#    # Docker Hub image (feel free to change the tag "latest" to any other available one)
+#    image: gvenzl/oracle-xe:21.3.0
+#
+#    # Provide passwords and other environment variables to container
+#    env:
+##      ORACLE_RANDOM_PASSWORD: true
+#      APP_USER: wagner
+#      APP_USER_PASSWORD: saopaulo
+#
+#    # Forward Oracle port
+#    ports:
+#      - 1521:1521
+#
+##    # Provide healthcheck script options for startup
+##    options: >-
+##      --health-cmd healthcheck.sh
+##      --health-interval 10s
+##      --health-timeout 5s
+##      --health-retries 10
+#
+#
+##docker container create  -it  --name oracle-21  -p 1521:1521  -e ORACLE_PWD=saopaulo  container-registry.oracle.com/database/express:latest
+##docker run -it container-registry.oracle.com/database/express /bin/bash
+##docker run --name oracle11g  -p 1521:1521 -p 5500:5500 -e ORACLE_PWD=saopaulo  oracleinanutshell/oracle-xe-11g:latest

@@ -1,0 +1,55 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /carrefour/catalogo
+
+
+project:
+  version: @version@
+
+
+spring:
+  main:
+    banner-mode: off
+
+  application:
+    name: vtex
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+  mvc: # Problema com Swagger 2
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  data:
+    mongodb:
+      authentication-database: admin
+      username: carrefour
+      password: carrefour
+      database: carrefour
+      port: 27017
+      host: 127.0.0.1
+
+
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+
+
+spring-doc:
+  paths-to-match:
+    - /carrefour/catalogo/v1/**
+  swagger-ui:
+    use-root-path: true
+
+#micronaut:
+#  jms:
+#    activemq:
+#      artemis:
+#        enabled: true
+#        connection-string: 'tcp://localhost:61616'
+#        password: admin
+#        username: admin
